@@ -7,3 +7,6 @@ FastAPI-Users:
 
 FastAPI Base app:
 - https://github.com/mahenzon/FastAPI-base-app
+
+Генерация случайного числа:
+python -c "import secrets; print(secrets.token_hex())"

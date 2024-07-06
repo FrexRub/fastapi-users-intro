@@ -49,21 +49,21 @@ class DatabaseConfig(BaseModel):
 
 class AccessToken(BaseModel):
     lifetime_seconds: int = 3600
-    reset_password_token_secret: str
-    verification_token_secret: str
+    reset_password_token_secret: str  # в env файле APP_CONFIG__ACCESS_TOKEN__RESET_PASSWORD_TOKEN_SECRET
+    verification_token_secret: str # в env файле APP_CONFIG__ACCESS_TOKEN__VERIFICATION_TOKEN_SECRET
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=(".env.template", ".env"),
         case_sensitive=False,
-        env_nested_delimiter="__",
-        env_prefix="APP_CONFIG__",
+        env_nested_delimiter="__",  # устанавливаем разделитель в env файле
+        env_prefix="APP_CONFIG__",  # префикс, который удаляется у переменной из env файла
     )
-    run: RunConfig = RunConfig()
+    run: RunConfig = RunConfig()  # скобки обозначают применение значений по умолчанию
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
-    access_token: AccessToken
+    access_token: AccessToken  # отсутствие скобок говорит о подтягивании данных из env файла
 
 
 settings = Settings()
